@@ -49,6 +49,14 @@ jacoco {
     toolVersion = "0.8.5"
 }
 
+jar {
+    manifest {
+        attributes(
+                'Class-Path': configurations.compile.collect { it.getName() }.join(' '),
+                'Main-Class': 'kata.App'
+        )
+    }
+}
 
 jacocoTestReport {
     reports {
