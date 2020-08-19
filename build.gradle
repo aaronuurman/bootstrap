@@ -1,6 +1,5 @@
 plugins {
     id 'java'
-    id 'com.github.ben-manes.versions' version '0.29.0'
     id 'jacoco'
 }
 
@@ -9,26 +8,12 @@ repositories {
 }
 
 dependencies {
-    def assertjVersion = '3.16.1'
-    def approvalVersion = '9.2.0'
 
-    def junit4Version   = '4.13'
-    def junitBomVersion = '5.6.2'
 
-    testImplementation(platform("org.junit:junit-bom:$junitBomVersion"))
+    testImplementation(platform("org.junit:junit-bom:5.6.2"))
     testImplementation("org.junit.jupiter:junit-jupiter")
-
-    testImplementation("junit:junit:${junit4Version}")
-    testRuntimeOnly("org.junit.vintage:junit-vintage-engine") {
-        because 'allows JUnit 3 and JUnit 4 tests to run'
-    }
-
-    testRuntimeOnly("org.junit.platform:junit-platform-launcher") {
-        because 'allows tests to run from IDEs that bundle older version of launcher'
-    }
-
-    testImplementation("org.assertj:assertj-core:${assertjVersion}")
-    testImplementation("com.approvaltests:approvaltests:${approvalVersion}")
+    testImplementation("org.assertj:assertj-core:3.16.1")
+    testImplementation("com.approvaltests:approvaltests:9.2.0")
 }
 
 tasks.withType(JavaCompile) {
@@ -45,6 +30,7 @@ test {
         events "passed", "skipped", "failed"
     }
     finalizedBy jacocoTestReport
+    
     if (jdkWithPreviewFeatures())
         jvmArgs("--enable-preview")
 }
