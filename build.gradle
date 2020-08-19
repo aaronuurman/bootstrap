@@ -33,16 +33,20 @@ dependencies {
 
 tasks.withType(JavaCompile) {
     options.compilerArgs.add("-Xlint:all")
-    options.compilerArgs.add("--enable-preview")
+    options.incremental = true
+    
+    if (jdkWithPreviewFeatures())
+        options.compilerArgs.add("--enable-preview")
 }
 
 test {
-    jvmArgs("--enable-preview")
     useJUnitPlatform()
     testLogging {
         events "passed", "skipped", "failed"
     }
     finalizedBy jacocoTestReport
+    if (jdkWithPreviewFeatures())
+        jvmArgs("--enable-preview")
 }
 
 jacoco {
@@ -64,4 +68,10 @@ jacocoTestReport {
         csv.enabled false
         html.destination file("${buildDir}/jacocoHtml")
     }
+}
+
+static def jdkWithPreviewFeatures() {
+    def currentJvm = org.gradle.internal.jvm.Jvm.current()
+    def matcher = currentJvm =~ /^\d+/
+    return matcher[0].toInteger() > 11
 }
