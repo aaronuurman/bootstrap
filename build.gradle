@@ -3,6 +3,12 @@ plugins {
     id 'jacoco'
 }
 
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(16)
+    }
+}
+
 repositories {
     mavenCentral()
 }
@@ -42,7 +48,7 @@ jacoco {
 jar {
     manifest {
         attributes(
-                'Class-Path': configurations.compile.collect { it.getName() }.join(' '),
+                'Class-Path': configurations.compileClasspath.collect { it.getName() }.join(' '),
                 'Main-Class': 'kata.App'
         )
     }
