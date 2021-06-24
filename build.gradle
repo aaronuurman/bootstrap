@@ -15,11 +15,12 @@ repositories {
 
 dependencies {
 
-
     testImplementation(platform("org.junit:junit-bom:5.7.2"))
     testImplementation("org.junit.jupiter:junit-jupiter")
     testImplementation("org.assertj:assertj-core:3.19.0")
     testImplementation("com.approvaltests:approvaltests:11.7.0")
+    testImplementation("com.approvaltests:approvaltests:11.6.0")
+    testImplementation("com.larseckart:junit-tcr-extensions:0.0.1")
 }
 
 tasks.withType(JavaCompile) {
