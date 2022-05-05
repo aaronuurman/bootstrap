@@ -1,6 +1,8 @@
 plugins {
     id 'java'
     id 'jacoco'
+    id 'application'
+    id 'info.solidsoft.pitest' version '1.7.4'
 }
 
 java {
@@ -14,20 +16,35 @@ repositories {
 }
 
 dependencies {
+    implementation("org.json:json:20160212")
 
     testImplementation(platform("org.junit:junit-bom:5.8.2"))
     testImplementation("org.junit.jupiter:junit-jupiter")
     testImplementation("org.assertj:assertj-core:3.22.0")
     testImplementation("com.approvaltests:approvaltests:15.2.0")
     testImplementation("com.larseckart:junit-tcr-extensions:0.0.1")
+    testImplementation("org.mockito:mockito-core:4.5.1")
+    testImplementation("org.mockito:mockito-junit-jupiter:4.5.1")
 }
 
 tasks.withType(JavaCompile) {
     options.compilerArgs.add("-Xlint:all")
     options.incremental = true
-    
-    if (jdkWithPreviewFeatures())
-        options.compilerArgs.add("--enable-preview")
+}
+
+
+application {
+    mainClass.set("kata.App")
+}
+
+jar {
+    manifest {
+        attributes "Main-Class": "kata.App"
+    }
+
+    from {
+        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+    }
 }
 
 test {
@@ -36,34 +53,29 @@ test {
         events "passed", "skipped", "failed"
     }
     finalizedBy jacocoTestReport
-    
-    if (jdkWithPreviewFeatures())
-        jvmArgs("--enable-preview")
 }
 
 jacoco {
     toolVersion = "0.8.7"
 }
 
-jar {
-    manifest {
-        attributes(
-                'Class-Path': configurations.compileClasspath.collect { it.getName() }.join(' '),
-                'Main-Class': 'kata.App'
-        )
-    }
-}
-
 jacocoTestReport {
+    dependsOn test
     reports {
-        xml.enabled false
-        csv.enabled false
+        xml.required = false
+        csv.required = false
         html.destination file("${buildDir}/jacocoHtml")
     }
 }
 
-static def jdkWithPreviewFeatures() {
-    def currentJvm = org.gradle.internal.jvm.Jvm.current()
-    def matcher = currentJvm =~ /^\d+/
-    return matcher[0].toInteger() > 11
+project.tasks.check.dependsOn("pitest")
+pitest {
+    junit5PluginVersion = '0.15'
+    testSourceSets = [sourceSets.test]
+    mainSourceSets = [sourceSets.main]
+    targetClasses = ['ferry.booking.*']
+    pitestVersion = '1.7.0'
+    threads = 4
+    outputFormats = ['XML', 'HTML']
+    timestampedReports = false
 }
