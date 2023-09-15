@@ -5,7 +5,6 @@ import org.junit.jupiter.api.DisplayNameGenerator;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 
-import com.github.larseckart.tcr.TestCommitRevertExtension;
 import com.github.larseckart.tcr.TestCommitRevertMainExtension;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -24,18 +23,17 @@ class DeckTest {
     @Test
     void deck_has_149_cards_when_we_take_one() {
 
-
         deck.takeCard();
 
         assertThat(deck.amountOfCards()).isEqualTo(149);
     }
 
     @Test
-    void applesauce(){
+    void deck_contains_10_cards_with_1_point() {
         int counter = 0;
         for (int i = 0; i < 150; i++) {
             var card = deck.takeCard();
-            if(card.points()==1){
+            if (card.points() == 1) {
                 counter++;
             }
         }
