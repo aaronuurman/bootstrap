@@ -41,6 +41,30 @@ class DeckTest {
         assertThat(counter).isEqualTo(10);
     }
 
+    @Test
+    void deck_contains_5_cards_with_minus_2_point() {
+        int counter = 0;
+        for (int i = 0; i < 150; i++) {
+            var card = deck.takeCard();
+            if (card.points() == -2) {
+                counter++;
+            }
+        }
+        assertThat(counter).isEqualTo(5);
+    }
+
+    @Test
+    void deck_contains_15_cards_with_0_point() {
+        int counter = 0;
+        for (int i = 0; i < 150; i++) {
+            var card = deck.takeCard();
+            if (card.points() == 0) {
+                counter++;
+            }
+        }
+        assertThat(counter).isEqualTo(15);
+    }
+
     @ParameterizedTest
     @ValueSource(ints = { -1, 1, 2, 3, 5, 6, 7, 8, 9, 10, 11, 12 })
     void deck_contains_10_cards_with_1_point(int points) {
