@@ -7,19 +7,16 @@ public class Deck {
 
     public Deck() {
         this.cards = initializeDeck();
-        this.amountOfCards = 150;
     }
 
     private List<Card> cards;
-    private int amountOfCards;
 
     public int amountOfCards() {
-        return amountOfCards;
+        return cards.size();
     }
 
     public Card takeCard() {
-        amountOfCards--;
-        return cards.get(amountOfCards);
+        return cards.remove(0);
     }
 
     private List<Card> initializeDeck() {
