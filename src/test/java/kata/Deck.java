@@ -21,11 +21,19 @@ public class Deck {
 
     private List<Card> initializeDeck() {
         var cards = new ArrayList<Card>();
-        for (int i = 0; i < 10; i++) {
-            cards.add(new Card(1));
+        for (int p = 1; p <= 12; p++) {
+            for (int i = 0; i < 10; i++) {
+                cards.add(new Card(p));
+            }
         }
-        for (int i = 0; i < 140; i++) {
-            cards.add(new Card(14));
+        for (int i = 1; i <= 10; i++) {
+            cards.add(new Card(-1));
+        }
+        for (int i = 1; i <= 5; i++) {
+            cards.add(new Card(-2));
+        }
+        for (int i = 1; i <= 15; i++) {
+            cards.add(new Card(0));
         }
         return cards;
     }

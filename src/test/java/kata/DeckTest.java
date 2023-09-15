@@ -4,6 +4,8 @@ import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.DisplayNameGenerator;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import com.github.larseckart.tcr.TestCommitRevertMainExtension;
 
@@ -22,7 +24,6 @@ class DeckTest {
 
     @Test
     void deck_has_149_cards_when_we_take_one() {
-
         deck.takeCard();
 
         assertThat(deck.amountOfCards()).isEqualTo(149);
@@ -34,6 +35,19 @@ class DeckTest {
         for (int i = 0; i < 150; i++) {
             var card = deck.takeCard();
             if (card.points() == 1) {
+                counter++;
+            }
+        }
+        assertThat(counter).isEqualTo(10);
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = { -1, 1, 2, 3, 5, 6, 7, 8, 9, 10, 11, 12 })
+    void deck_contains_10_cards_with_1_point(int points) {
+        int counter = 0;
+        for (int i = 0; i < 150; i++) {
+            var card = deck.takeCard();
+            if (card.points() == points) {
                 counter++;
             }
         }
