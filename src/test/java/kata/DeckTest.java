@@ -15,6 +15,15 @@ class DeckTest {
     @Test
     void deck_size_is_150() {
         Deck deck = new Deck();
-        assertThat( deck.amountOfCards()).isEqualTo(150);
+        assertThat(deck.amountOfCards()).isEqualTo(150);
+    }
+
+    @Test
+    void deck_has_149_cards_when_we_take_one() {
+        Deck deck = new Deck();
+
+        deck.takeCard();
+
+        assertThat(deck.amountOfCards()).isEqualTo(149);
     }
 }

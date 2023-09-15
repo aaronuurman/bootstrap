@@ -2,7 +2,13 @@ package kata;
 
 public class Deck {
 
+    private int amountOfCards = 150;
+
     public int amountOfCards() {
-        return 150;
+        return amountOfCards;
+    }
+
+    public void takeCard() {
+        amountOfCards--;
     }
 }
