@@ -24,4 +24,24 @@ public class PlayerTest {
         Assertions.assertThat(player.isReady()).isFalse();
     }
 
+    @Test
+    void player_can_start_game_when_he_has_12_cards() {
+        Player player = new Player();
+        player.receiveCards(List.of(
+                new Card(1),
+                new Card(1),
+                new Card(1),
+                new Card(1),
+                new Card(1),
+                new Card(1),
+                new Card(1),
+                new Card(1),
+                new Card(1),
+                new Card(1),
+                new Card(1),
+                new Card(1)
+        ));
+        Assertions.assertThat(player.isReady()).isTrue();
+    }
+
 }
