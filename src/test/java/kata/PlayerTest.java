@@ -65,4 +65,8 @@ public class PlayerTest {
         Assertions.assertThat(player.score()).isPositive();
     }
 
+    // TODO: add negative and 0 cases tests.
+
+
+
 }
