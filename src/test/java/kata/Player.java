@@ -9,7 +9,7 @@ public class Player {
     private List<Card> cards = new ArrayList<>();
 
     public void receiveCards(List<Card> cards) {
-
+        cards = List.copyOf(cards);
     }
 
     public int score() {
