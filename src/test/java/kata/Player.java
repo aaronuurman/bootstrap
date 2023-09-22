@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Player {
-
-    private int score = 0;
     private List<Card> cards = new ArrayList<>();
 
     public void receiveCards(List<Card> cards) {
@@ -13,7 +11,10 @@ public class Player {
     }
 
     public int score() {
-        return this.score;
+        return this.cards.stream()
+                .filter(Card::isFlipped)
+                .mapToInt(Card::points)
+                .sum();
     }
 
     public boolean isReady() {
@@ -22,6 +23,6 @@ public class Player {
 
     public void flipCard(int cardIndex) {
         Card card = cards.get(cardIndex);
-        score += card.points();
+        card.flip();
     }
 }
