@@ -19,4 +19,9 @@ public class Player {
     public boolean isReady() {
         return cards.size() == 12;
     }
+
+    public void flipCard(int cardIndex) {
+        Card card = cards.get(cardIndex);
+        score += card.points();
+    }
 }
