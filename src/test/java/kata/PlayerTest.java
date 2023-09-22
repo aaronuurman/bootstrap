@@ -17,4 +17,11 @@ public class PlayerTest {
         Assertions.assertThat(player.score()).isZero();
     }
 
+    @Test
+    void player_cant_start_game_with_less_than_12_cards() {
+        Player player = new Player();
+        player.receiveCards(List.of(new Card(1)));
+        Assertions.assertThat(player.isReady()).isFalse();
+    }
+
 }
