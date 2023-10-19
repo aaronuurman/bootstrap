@@ -72,4 +72,22 @@ class GameTest {
 
         assertThat(game.deckSize()).isEqualTo(150-12-12);
     }
+
+    @Test
+    void after_dealing_player_flip_two_cards_and_player_with_highest_score_starts() {
+        Game game = new Game();
+        Player player1 = new Player();
+        Player player2 = new Player();
+        game.join(player1);
+        game.join(player2);
+
+        game.start();
+
+        player1.flipCard(Position.inRow(0).inColumn(0));
+        player1.flipCard(Position.inRow(0).inColumn(1));
+        player2.flipCard(Position.inColumn(0).inRow(0));
+        player2.flipCard(Position.inRow(3).inColumn(2));
+
+        assertThat(player1.score()).isNotEqualTo(player2.score());
+    }
 }

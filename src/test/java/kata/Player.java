@@ -25,4 +25,8 @@ public class Player {
         Card card = cards.get(cardIndex);
         card.flip();
     }
+    public void flipCard(Position position) {
+        Card card = cards.get(position.toIndex());
+        card.flip();
+    }
 }
