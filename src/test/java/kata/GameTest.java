@@ -27,4 +27,40 @@ class GameTest {
         assertThat(gameState).isEqualTo(GameState.READY);
     }
 
+    @Test
+    void game_can_have_up_to_eight_players() {
+        Game game = new Game();
+        game.join(new Player());
+        game.join(new Player());
+        game.join(new Player());
+        game.join(new Player());
+        game.join(new Player());
+        game.join(new Player());
+        game.join(new Player());
+        game.join(new Player());
+
+        GameState gameState = game.state();
+
+        assertThat(gameState).isEqualTo(GameState.READY);
+    }
+
+    @Test
+    void when_more_than_eight_player_join_game_then_game_is_in_state_too_many_players() {
+        Game game = new Game();
+        game.join(new Player());
+        game.join(new Player());
+        game.join(new Player());
+        game.join(new Player());
+        game.join(new Player());
+        game.join(new Player());
+        game.join(new Player());
+        game.join(new Player());
+        game.join(new Player());
+
+        GameState gameState = game.state();
+
+        assertThat(gameState).isEqualTo(GameState.TOO_MANY_PLAYERS);
+    }
+
+    
 }

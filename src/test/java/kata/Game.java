@@ -15,6 +15,11 @@ public class Game {
         if (players.size() >= 2) {
             state = READY;
         }
+
+        if (players.size() > 8) {
+            state = GameState.TOO_MANY_PLAYERS;
+        }
+
         return state;
     }
 
