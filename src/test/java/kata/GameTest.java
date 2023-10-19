@@ -62,5 +62,14 @@ class GameTest {
         assertThat(gameState).isEqualTo(GameState.TOO_MANY_PLAYERS);
     }
 
-    
+    @Test
+    void game_starts_with_cards_dealing() {
+        Game game = new Game();
+        game.join(new Player());
+        game.join(new Player());
+
+        game.start();
+
+        assertThat(game.deckSize()).isEqualTo(150-12-12);
+    }
 }
