@@ -1,7 +1,5 @@
 package kata;
 
-import javax.print.DocFlavor;
-
 import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.DisplayNameGenerator;
 import org.junit.jupiter.api.Test;
@@ -9,7 +7,7 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
-public class GameTest {
+class GameTest {
 
     @Test
     void when_game_is_created_then_state_is_waiting_for_additional_players() {

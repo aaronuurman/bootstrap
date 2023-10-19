@@ -8,7 +8,7 @@ import org.junit.jupiter.api.DisplayNameGenerator;
 import org.junit.jupiter.api.Test;
 
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
-public class PlayerTest {
+class PlayerTest {
 
     @Test
     void apple_sauce() {
