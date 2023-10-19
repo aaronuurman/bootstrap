@@ -21,10 +21,6 @@ public class Player {
         return cards.size() == 12;
     }
 
-    public void flipCard(int cardIndex) {
-        Card card = cards.get(cardIndex);
-        card.flip();
-    }
     public void flipCard(Position position) {
         Card card = cards.get(position.toIndex());
         card.flip();

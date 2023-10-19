@@ -61,7 +61,7 @@ class PlayerTest {
                 new Card(1),
                 new Card(1)
         ));
-        player.flipCard(3);
+        player.flipCard(Position.inRow(0).inColumn(1));
         Assertions.assertThat(player.score()).isPositive();
     }
 
