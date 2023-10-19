@@ -27,7 +27,7 @@ public class Position {
 
         private final int row;
 
-        public PositionWithRow(int row) {
+        private PositionWithRow(int row) {
             this.row = row;
         }
 
@@ -40,7 +40,7 @@ public class Position {
 
         private final int column;
 
-        public PositionWithColumn(int column) {
+        private PositionWithColumn(int column) {
             this.column = column;
         }
 
