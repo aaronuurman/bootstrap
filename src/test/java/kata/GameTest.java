@@ -94,6 +94,30 @@ class GameTest {
 
         assertThat(player1.score()).isNotEqualTo(player2.score());
         assertThat(game.whoGoesFirst()).isEqualTo(player2);
+        assertThat(player2.isNextToPlay()).isTrue();
+        assertThat(player1.isNextToPlay()).isFalse();
+    }
+
+    @Test
+    void after_playing_then_next_players_turn_it_is() {
+        Game game = new Game();
+        Player player1 = new Player();
+        Player player2 = new Player();
+        game.join(player1);
+        game.join(player2);
+
+        game.dealCards();
+
+        player1.flipTwoCards(Position.inRow(0).inColumn(0), Position.inRow(0).inColumn(1));
+        player2.flipTwoCards(Position.inColumn(0).inRow(0), Position.inRow(3).inColumn(2));
+
+        game.cardTakenFromDiscardPile();
+        game.replaceCardInHandWith(Position.inRow(0).inColumn(0));
+
+        assertThat(player2.score()).isEqualTo(6);
+        // TODO: continue here next time
+//        assertThat(player2.isNextToPlay()).isFalse();
+//        assertThat(player1.isNextToPlay()).isTrue();
     }
 
 }

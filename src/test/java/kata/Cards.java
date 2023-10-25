@@ -42,4 +42,8 @@ public final class Cards {
                 .mapToInt(Card::points)
                 .sum();
     }
+
+    public Card swapAt(Position position, Card cardInHand) {
+        return cards.set(position.toIndex(), cardInHand);
+    }
 }

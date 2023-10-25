@@ -9,6 +9,9 @@ public class DiscardPile {
     }
 
     public static DiscardPile startingWith(Card card) {
+        if (!card.isFlipped()) {
+            card.flip();
+        }
         return new DiscardPile(card);
     }
 

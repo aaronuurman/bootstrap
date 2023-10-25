@@ -51,6 +51,7 @@ public class Game {
                 highestScorePlayer = player;
             }
         }
+        highestScorePlayer.youGoNext();
         return highestScorePlayer;
     }
 
@@ -58,4 +59,15 @@ public class Game {
         return discardPile.topCard();
     }
 
+    public void cardTakenFromDiscardPile() {
+        Card card = discardPile.takeCard();
+        Player player = whoGoesFirst();
+        player.holdTemporarily(card);
+    }
+
+    public void replaceCardInHandWith(Position position) {
+        Player player = whoGoesFirst();
+        Card discardedCard = player.swapAt(position);
+        this.discardPile = DiscardPile.startingWith(discardedCard);
+    }
 }
