@@ -8,6 +8,7 @@ public class DiscardPile {
         this.card = card;
     }
 
+    // no Test that forced us to write the if statement (became necessary due to test in GameTest)
     public static DiscardPile startingWith(Card card) {
         if (!card.isFlipped()) {
             card.flip();

@@ -77,4 +77,6 @@ class DeckTest {
         assertThat(counter).isEqualTo(10);
     }
 
+    // TODO: test to verify that card in discard pile is flipped.
+
 }
