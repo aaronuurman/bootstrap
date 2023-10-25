@@ -93,6 +93,6 @@ class GameTest {
         player2.flipCard(Position.inRow(3).inColumn(2));
 
         assertThat(player1.score()).isNotEqualTo(player2.score());
-        assertThat(game.findPlayerWithHighestScore()).isEqualTo(player2);
+        assertThat(game.whoGoesFirst()).isEqualTo(player2);
     }
 }

@@ -41,11 +41,11 @@ public class Game {
         return deck.amountOfCards();
     }
 
-    public Player findPlayerWithHighestScore() {
+    public Player whoGoesFirst() {
         Player highestScorePlayer = players.get(0);
-        for (Player p : players) {
-            if (p.score() > highestScorePlayer.score()) {
-                highestScorePlayer = p;
+        for (var player : players) {
+            if (player.score() > highestScorePlayer.score()) {
+                highestScorePlayer = player;
             }
         }
         return highestScorePlayer;
