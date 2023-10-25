@@ -6,6 +6,7 @@ import org.junit.jupiter.api.DisplayNameGenerator;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 
+import static org.assertj.core.api.Assertions.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
@@ -66,14 +67,15 @@ class GameTest {
     }
 
     @Test
-    void game_starts_with_cards_dealing() {
+    void after_dealing_cards_discard_pile_is_created() {
         Game game = new Game();
         game.join(new Player());
         game.join(new Player());
 
         game.dealCards();
 
-        assertThat(game.deckSize()).isEqualTo(150 - 12 - 12);
+        assertThat(game.deckSize()).isEqualTo(150 - 12 - 12 - 1);
+        assertThat(game.topOfDiscardPile()).isEqualTo(new Card(3));
     }
 
     // SMELL: we dont understand what Deck this game is using that players have score 2 and 5

@@ -11,6 +11,7 @@ public class Game {
     private GameState state = WAITING_FOR_ADDITIONAL_PLAYERS;
     private final List<Player> players = new ArrayList<>();
     private final Deck deck = new Deck();
+    private DiscardPile discardPile;
 
     public GameState state() {
         if (players.size() >= 2) {
@@ -35,6 +36,8 @@ public class Game {
                 player.receiveCard(e);
             }
         }
+        Card card = deck.takeCard();
+        this.discardPile = DiscardPile.startingWith(card);
     }
 
     public int deckSize() {
@@ -50,4 +53,9 @@ public class Game {
         }
         return highestScorePlayer;
     }
+
+    public Card topOfDiscardPile() {
+        return discardPile.topCard();
+    }
+
 }
