@@ -1,12 +1,30 @@
 package kata;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public final class Cards {
-    private final List<Card> cards;
+    private final List<Card> cards = new ArrayList<>();
 
-    public Cards(List<Card> cards) {
-        this.cards = cards;
+    private Cards(Card... cards) {
+        this.cards.addAll(Arrays.asList(cards));
+    }
+
+    public static Cards none() {
+        return new Cards();
+    }
+
+    public static Cards of(Card card) {
+        return new Cards(card);
+    }
+
+    public static Cards from(Card... cards) {
+        return new Cards(cards);
+    }
+
+    public void add(Card card) {
+        this.cards.add(card);
     }
 
     public boolean size() {
@@ -24,5 +42,4 @@ public final class Cards {
                 .mapToInt(Card::points)
                 .sum();
     }
-
 }

@@ -30,11 +30,10 @@ public class Game {
 
     public void start() {
         for (Player player : players) {
-            List<Card> cards = new ArrayList<>();
             for (int i = 0; i < 12; i++) {
-                cards.add(deck.takeCard());
+                Card e = deck.takeCard();
+                player.receiveCard(e);
             }
-            player.receiveCards(new Cards(cards));
         }
     }
 
