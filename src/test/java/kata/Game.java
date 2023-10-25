@@ -40,4 +40,14 @@ public class Game {
     public int deckSize() {
         return deck.amountOfCards();
     }
+
+    public Player findPlayerWithHighestScore() {
+        Player highestScorePlayer = players.get(0);
+        for (Player p : players) {
+            if (p.score() > highestScorePlayer.score()) {
+                highestScorePlayer = p;
+            }
+        }
+        return highestScorePlayer;
+    }
 }

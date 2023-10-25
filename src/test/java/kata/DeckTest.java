@@ -12,7 +12,6 @@ import com.github.larseckart.tcr.TestCommitRevertMainExtension;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
-@ExtendWith(TestCommitRevertMainExtension.class)
 class DeckTest {
 
     private final Deck deck = new Deck();

@@ -1,12 +1,15 @@
 package kata;
 
+import com.github.larseckart.tcr.TestCommitRevertMainExtension;
 import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.DisplayNameGenerator;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
+@ExtendWith(TestCommitRevertMainExtension.class)
 class GameTest {
 
     @Test
@@ -70,9 +73,10 @@ class GameTest {
 
         game.start();
 
-        assertThat(game.deckSize()).isEqualTo(150-12-12);
+        assertThat(game.deckSize()).isEqualTo(150 - 12 - 12);
     }
 
+    // SMELL: we dont understand what Deck this game is using that players have score 2 and 5
     @Test
     void after_dealing_player_flip_two_cards_and_player_with_highest_score_starts() {
         Game game = new Game();
@@ -89,5 +93,6 @@ class GameTest {
         player2.flipCard(Position.inRow(3).inColumn(2));
 
         assertThat(player1.score()).isNotEqualTo(player2.score());
+        assertThat(game.findPlayerWithHighestScore()).isEqualTo(player2);
     }
 }
