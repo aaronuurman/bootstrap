@@ -71,7 +71,7 @@ class GameTest {
         game.join(new Player());
         game.join(new Player());
 
-        game.start();
+        game.dealCards();
 
         assertThat(game.deckSize()).isEqualTo(150 - 12 - 12);
     }
@@ -85,7 +85,7 @@ class GameTest {
         game.join(player1);
         game.join(player2);
 
-        game.start();
+        game.dealCards();
 
         player1.flipCard(Position.inRow(0).inColumn(0));
         player1.flipCard(Position.inRow(0).inColumn(1));

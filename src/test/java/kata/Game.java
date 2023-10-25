@@ -28,7 +28,7 @@ public class Game {
         this.players.add(player);
     }
 
-    public void start() {
+    public void dealCards() {
         for (Player player : players) {
             for (int i = 0; i < 12; i++) {
                 Card e = deck.takeCard();
