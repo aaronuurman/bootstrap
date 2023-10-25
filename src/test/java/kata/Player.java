@@ -12,16 +12,21 @@ public class Player {
         this.cards.add(card);
     }
 
+    public void flipCard(Position position) {
+        cards.flip(position);
+    }
+
+    public void flipTwoCards(Position position, Position position1) {
+        flipCard(position);
+        flipCard(position1);
+    }
+
     public int score() {
         return cards.sum();
     }
 
     public boolean isReady() {
         return cards.size();
-    }
-
-    public void flipCard(Position position) {
-        cards.flip(position);
     }
 
 }

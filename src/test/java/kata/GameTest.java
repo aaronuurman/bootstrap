@@ -87,12 +87,11 @@ class GameTest {
 
         game.dealCards();
 
-        player1.flipCard(Position.inRow(0).inColumn(0));
-        player1.flipCard(Position.inRow(0).inColumn(1));
-        player2.flipCard(Position.inColumn(0).inRow(0));
-        player2.flipCard(Position.inRow(3).inColumn(2));
+        player1.flipTwoCards(Position.inRow(0).inColumn(0), Position.inRow(0).inColumn(1));
+        player2.flipTwoCards(Position.inColumn(0).inRow(0), Position.inRow(3).inColumn(2));
 
         assertThat(player1.score()).isNotEqualTo(player2.score());
         assertThat(game.whoGoesFirst()).isEqualTo(player2);
     }
+
 }
