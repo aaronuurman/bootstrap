@@ -21,7 +21,7 @@ public class DiscardPile {
         return this.card;
     }
 
-    // SMELL: should be just the view on a Card. no need to have card that can be flipped
+    // TODO SMELL: should be just the view on a Card. no need to have card that can be flipped
     public Card topCard() {
         return this.card;
     }
