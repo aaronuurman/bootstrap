@@ -1,28 +1,23 @@
 package kata;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Player {
-    private List<Card> cards = new ArrayList<>();
 
-    public void receiveCards(List<Card> cards) {
-        this.cards = List.copyOf(cards);
+    public Cards cards;
+
+    public void receiveCards(Cards cards) {
+        this.cards = cards;
     }
 
     public int score() {
-        return this.cards.stream()
-                .filter(Card::isFlipped)
-                .mapToInt(Card::points)
-                .sum();
+        return cards.sum();
     }
 
     public boolean isReady() {
-        return cards.size() == 12;
+        return cards.size();
     }
 
     public void flipCard(Position position) {
-        Card card = cards.get(position.toIndex());
-        card.flip();
+        cards.flip(position);
     }
+
 }

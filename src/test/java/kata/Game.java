@@ -34,7 +34,7 @@ public class Game {
             for (int i = 0; i < 12; i++) {
                 cards.add(deck.takeCard());
             }
-            player.receiveCards(cards);
+            player.receiveCards(new Cards(cards));
         }
     }
 
