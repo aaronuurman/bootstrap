@@ -7,6 +7,7 @@ import java.util.function.Consumer;
 public final class Players {
 
     private final List<Player> players;
+    private int index;
 
     public Players() {
         this.players = new ArrayList<>();
@@ -17,14 +18,10 @@ public final class Players {
     }
 
     public boolean hasTooManyPlayers() {
-        return players().size() > 8;
+        return players.size() > 8;
     }
 
-    public List<Player> players() {
-        return players;
-    }
-
-    public List<Player> getPlayers() {
+    private List<Player> getPlayers() {
         return players;
     }
 
@@ -76,5 +73,21 @@ public final class Players {
             }
         }
         throw new IllegalStateException("No player has turn");
+    }
+
+    public Player addOne() {
+        Player player = new Player();
+        players.add(player);
+        return player;
+    }
+
+    public void consumeCard(Card card) {
+        Player player = players.get(index);
+        player.receiveCard(card);
+        if (index == players.size() - 1) {
+            index = 0;
+        } else {
+            index++;
+        }
     }
 }

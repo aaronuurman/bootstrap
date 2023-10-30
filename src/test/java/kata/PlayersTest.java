@@ -10,44 +10,27 @@ class PlayersTest {
     @Test
     void determine_who_goes_first_when_players_have_12_cards_and_two_flipped() {
         Players players = new Players();
-        Player player1 = new Player();
-        Player player2 = new Player();
-        Player player3 = new Player();
-        players.add(player1);
-        players.add(player2);
-        players.add(player3);
+        var player1 = players.addOne();
+        var player2 = players.addOne();
+        var player3 = players.addOne();
 
-        player1.receiveCards(get12CardsWithTwoFlippedOnes(1, 1));
-        player2.receiveCards(get12CardsWithTwoFlippedOnes(2, 2));
-        player3.receiveCards(get12CardsWithTwoFlippedOnes(3, 3));
+        // TODO: continue from here, expand Cards so that it can be flipped...
+        players.consumeCard(new Card(1));
+        players.consumeCard(new Card(2));
+        players.consumeCard(new Card(3));
+        players.consumeCard(new Card(1));
+        players.consumeCard(new Card(2));
+        players.consumeCard(new Card(3));
 
         Player nextPlayer = players.whoGoesFirst();
 
         assertEquals(player3, nextPlayer);
     }
 
-    private static Cards get12CardsWithTwoFlippedOnes(int... points) {
-        if (points.length != 2) {
-            throw new IllegalArgumentException("must have exactly two points");
-        }
-        Card card5 = new Card(points[0]);
+    private static Cards twoFlippedCardsWithValue(int points) {
+        Card card5 = new Card(points);
         card5.flip();
-        Card card6 = new Card(points[1]);
-        card6.flip();
-        return Cards.from(
-                card5,
-                card6,
-                new Card(1),
-                new Card(1),
-                new Card(1),
-                new Card(1),
-                new Card(1),
-                new Card(1),
-                new Card(1),
-                new Card(1),
-                new Card(1),
-                new Card(1)
-        );
+        return Cards.from(card5);
     }
 
 }
