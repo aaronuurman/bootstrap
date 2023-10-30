@@ -46,6 +46,7 @@ class PlayerTest {
         Assertions.assertThat(player.isReady()).isTrue();
     }
 
+
     @Test
     void player_flips_positive_card_then_score_increases() {
         Player player = new Player();

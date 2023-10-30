@@ -42,6 +42,7 @@ public final class Players {
         players.forEach(playerConsumer);
     }
 
+    // what if 2 players have same score?
     public Player whoGoesFirst() {
         Player highestScorePlayer = players.get(0);
         for (var player : players) {
