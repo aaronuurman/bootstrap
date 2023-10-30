@@ -1,12 +1,12 @@
 package kata;
 
-import com.github.larseckart.tcr.TestCommitRevertMainExtension;
 import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.DisplayNameGenerator;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 
-import static org.assertj.core.api.Assertions.*;
+import com.github.larseckart.tcr.TestCommitRevertMainExtension;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
@@ -78,7 +78,7 @@ class GameTest {
         assertThat(game.topOfDiscardPile()).isEqualTo(new Card(3));
     }
 
-    // SMELL: we dont understand what Deck this game is using that players have score 2 and 5
+    // SMELL: we don't understand what Deck this game is using that players have score 2 and 5
     @Test
     void after_dealing_player_flip_two_cards_and_player_with_highest_score_starts() {
         Game game = new Game();
