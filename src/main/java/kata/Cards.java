@@ -46,4 +46,9 @@ public final class Cards {
     public Card swapAt(Position position, Card cardInHand) {
         return cards.set(position.toIndex(), cardInHand);
     }
+
+    @Override
+    public String toString() {
+        return cards.toString();
+    }
 }

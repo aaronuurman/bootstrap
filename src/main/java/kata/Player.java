@@ -18,11 +18,6 @@ public class Player {
         cards.flip(position);
     }
 
-    public void flipTwoCards(Position position, Position position1) {
-        flipCard(position);
-        flipCard(position1);
-    }
-
     public int score() {
         return cards.sum();
     }
@@ -49,5 +44,12 @@ public class Player {
 
     public void endTurn() {
         this.yourTurn = false;
+    }
+
+    @Override
+    public String toString() {
+        return "Player{" +
+               "cards=" + cards +
+               '}';
     }
 }

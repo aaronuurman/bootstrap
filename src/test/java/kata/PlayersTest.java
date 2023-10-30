@@ -9,29 +9,19 @@ class PlayersTest {
     // @Disabled("have to fix first the case that players only have a score when they have 12 cards")
     @Test
     void determine_who_goes_first_when_players_have_12_cards_and_two_flipped() {
-        Players players = new Players();
-        var player1 = players.addOne();
-        var player2 = players.addOne();
-        var player3 = players.addOne();
+        Players players = Players.create(3);
+        deal(players, 1, 2, 3, 1, 2, 3);
 
-        // TODO: continue from here, expand Cards so that it can be flipped...
-        // Why this did not break any other tests?
-        players.consumeCard(new Card(1));
-        players.consumeCard(new Card(2));
-        players.consumeCard(new Card(3));
-        players.consumeCard(new Card(1));
-        players.consumeCard(new Card(2));
-        players.consumeCard(new Card(3));
-
-        Player nextPlayer = players.whoGoesFirst();
-
-        assertEquals(player3, nextPlayer);
+        assertEquals(players.getPlayer(3), players.whoGoesFirst());
     }
 
-    private static Cards twoFlippedCardsWithValue(int points) {
-        Card card5 = new Card(points);
-        card5.flip();
-        return Cards.from(card5);
+    private void deal(Players players, int... cards) {
+        for (int card : cards) {
+            Card card1 = new Card(card);
+            card1.flip();
+            players.consumeCard(card1);
+        }
     }
+
 
 }

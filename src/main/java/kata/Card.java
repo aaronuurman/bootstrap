@@ -38,9 +38,6 @@ public class Card {
 
     @Override
     public String toString() {
-        return "Card{" +
-               "points=" + points +
-               ", flipped=" + flipped +
-               '}';
+        return "%s%s".formatted(points, flipped ? "↑" : "↓");
     }
 }

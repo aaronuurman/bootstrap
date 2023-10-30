@@ -1,16 +1,14 @@
 package kata;
 
+import org.approvaltests.Approvals;
 import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.DisplayNameGenerator;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-
-import com.github.larseckart.tcr.TestCommitRevertMainExtension;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
-@ExtendWith(TestCommitRevertMainExtension.class)
+//@ExtendWith(TestCommitRevertMainExtension.class)
 class GameTest {
 
     @Test
@@ -81,20 +79,29 @@ class GameTest {
     // SMELL: we don't understand what Deck this game is using that players have score 2 and 5
     @Test
     void after_dealing_player_flip_two_cards_and_player_with_highest_score_starts() {
-        Game game = new Game();
-        Player player1 = new Player();
-        Player player2 = new Player();
-        game.join(player1);
-        game.join(player2);
+        Game game = Game.create(2);
+        game.setDeck(getDeckWithIncrementingCards());
 
         game.dealCards();
 
-        player1.flipTwoCards(Position.inRow(0).inColumn(0), Position.inRow(0).inColumn(1));
-        player2.flipTwoCards(Position.inColumn(0).inRow(0), Position.inRow(3).inColumn(2));
+        flipCard(game.getPlayer(1), 0, 0);
+        flipCard(game.getPlayer(1), 0, 1);
+        flipCard(game.getPlayer(2), 0, 0);
+        flipCard(game.getPlayer(2), 3, 2);
 
-        assertThat(game.whoGoesFirst()).isEqualTo(player2);
+        Approvals.verify(game);
+        /*
+        Current Turn: Player 2
+
+         */
+
+        assertThat(game.whoGoesFirst()).isEqualTo(game.getPlayer(2));
         assertThat(player2.isNextToPlay()).isTrue();
         assertThat(player1.isNextToPlay()).isFalse();
+    }
+
+    private void flipCard(Player player1, int row, int col) {
+        player1.flipCard(Position.inRow(row).inColumn(col));
     }
 
     @Test
@@ -107,8 +114,14 @@ class GameTest {
 
         game.dealCards();
 
-        player1.flipTwoCards(Position.inRow(0).inColumn(0), Position.inRow(0).inColumn(1));
-        player2.flipTwoCards(Position.inColumn(0).inRow(0), Position.inRow(3).inColumn(2));
+        Position position2 = Position.inRow(0).inColumn(0);
+        Position position11 = Position.inRow(0).inColumn(1);
+        player1.flipCard(position2);
+        player1.flipCard(position11);
+        Position position = Position.inColumn(0).inRow(0);
+        Position position1 = Position.inRow(3).inColumn(2);
+        player2.flipCard(position);
+        player2.flipCard(position1);
 
         game.cardTakenFromDiscardPile();
         game.replaceCardInHandWith(Position.inRow(0).inColumn(0));

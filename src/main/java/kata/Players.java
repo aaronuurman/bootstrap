@@ -13,6 +13,14 @@ public final class Players {
         this.players = new ArrayList<>();
     }
 
+    public static Players create(int i) {
+        Players players = new Players();
+        for (int j = 0; j < i; j++) {
+            players.addOne();
+        }
+        return players;
+    }
+
     public boolean hasEnoughPlayers() {
         return players.size() >= 2;
     }
@@ -32,7 +40,7 @@ public final class Players {
     @Override
     public String toString() {
         return "Players[" +
-                "players=" + players + ']';
+               "players=" + players + ']';
     }
 
     public void foreach(Consumer<Player> playerConsumer) {
@@ -89,5 +97,9 @@ public final class Players {
         } else {
             index++;
         }
+    }
+
+    public Player getPlayer(int i) {
+        return players.get(i - 1);
     }
 }
