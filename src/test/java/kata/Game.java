@@ -66,8 +66,33 @@ public class Game {
     }
 
     public void replaceCardInHandWith(Position position) {
-        Player player = whoGoesFirst();
+        Player player = whoseTurnIsIt();
         Card discardedCard = player.swapAt(position);
         this.discardPile = DiscardPile.startingWith(discardedCard);
+        endTurn();
+    }
+
+    private void endTurn() {
+        for (int i = 0; i < players.size(); i++) {
+            Player player = players.get(i);
+            if (player.isNextToPlay()) {
+                if (i == players.size() - 1) {
+                    players.get(0).youGoNext();
+                } else {
+                    players.get(i + 1).youGoNext();
+                }
+                player.endTurn();
+                break;
+            }
+        }
+    }
+
+    private Player whoseTurnIsIt() {
+        for (var player : players) {
+            if (player.isNextToPlay()) {
+                return player;
+            }
+        }
+        throw new IllegalStateException("No player has turn");
     }
 }

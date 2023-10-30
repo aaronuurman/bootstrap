@@ -115,9 +115,8 @@ class GameTest {
         game.replaceCardInHandWith(Position.inRow(0).inColumn(0));
 
         assertThat(player2.score()).isEqualTo(6);
-        // TODO: continue here next time
-//        assertThat(player2.isNextToPlay()).isFalse();
-//        assertThat(player1.isNextToPlay()).isTrue();
+        assertThat(player2.isNextToPlay()).isFalse();
+        assertThat(player1.isNextToPlay()).isTrue();
     }
 
 }

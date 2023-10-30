@@ -46,4 +46,8 @@ public class Player {
     public Card swapAt(Position position) {
         return cards.swapAt(position, cardInHand);
     }
+
+    public void endTurn() {
+        this.yourTurn = false;
+    }
 }
