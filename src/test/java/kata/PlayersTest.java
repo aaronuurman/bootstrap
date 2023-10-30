@@ -15,6 +15,7 @@ class PlayersTest {
         var player3 = players.addOne();
 
         // TODO: continue from here, expand Cards so that it can be flipped...
+        // Why this did not break any other tests?
         players.consumeCard(new Card(1));
         players.consumeCard(new Card(2));
         players.consumeCard(new Card(3));
