@@ -50,4 +50,13 @@ public class Player {
     public void endTurn() {
         this.yourTurn = false;
     }
+
+    @Override
+    public String toString() {
+        return "Player{" +
+                "cards=" + cards +
+                ", yourTurn=" + yourTurn +
+                ", cardInHand=" + cardInHand +
+                '}';
+    }
 }

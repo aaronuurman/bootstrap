@@ -83,6 +83,7 @@ public final class Players {
 
     public void consumeCard(Card card) {
         Player player = players.get(index);
+        card.flip();
         player.receiveCard(card);
         if (index == players.size() - 1) {
             index = 0;
